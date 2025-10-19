@@ -34,7 +34,8 @@ public class BookStoreServiceImpl implements BookStoreService {
     /* Calculate the total price of the books in the basket including discounts
        Get list of books in the basket
        Count  unique books
-       Apply discount based on the number of unique books
+       Apply discount based on the number of unique books.
+       Optimize groups of 5 and 3 into groups of 4 and 4 for better discount
       */
     @Override
     public BigDecimal calculatePrice(List<Integer> basket) {
@@ -45,8 +46,11 @@ public class BookStoreServiceImpl implements BookStoreService {
         // Count the occurrences of each book
         Map<Integer, Integer> bookCount = countBooks(basket);
 
+        // Create groups of different books
+        List<Integer> groupOfDifferentBooks = getGroupOfDifferentBooks(bookCount);
+
         // Calculate and return total price with discounts
-        return calculateTotalPrice(bookCount);
+        return calculateTotalPrice(groupOfDifferentBooks);
     }
 
     private Map<Integer, Integer> countBooks(List<Integer> basket) {
@@ -58,21 +62,43 @@ public class BookStoreServiceImpl implements BookStoreService {
                 ));
     }
 
-    private BigDecimal calculateTotalPrice(Map<Integer, Integer> bookCount) {
-        BigDecimal totalPrice = BigDecimal.ZERO;
-
+    private List<Integer> getGroupOfDifferentBooks(Map<Integer, Integer> bookCount) {
+        List<Integer> group = new java.util.ArrayList<>();
         while (!bookCount.isEmpty()) {
             int uniqueBooks = bookCount.size();
-            BigDecimal discount = DISCOUNTS.getOrDefault(uniqueBooks, BigDecimal.ZERO);
+            group.add(uniqueBooks);
+            bookCount.replaceAll((bookId, count) -> count - 1);
+            bookCount.values().removeIf(count -> count <= 0);
+        }
+
+        optimizeGroup(group);
+
+        return group;
+    }
+
+    private void optimizeGroup(List<Integer> group) {
+        // Optimize groups of 5 and 3 into groups of 4 and 4
+        long countOfFive = group.stream().filter(size -> size == 5).count();
+        long countOfThree = group.stream().filter(size -> size == 3).count();
+        long pairsToOptimize = Math.min(countOfFive, countOfThree);
+
+        for (int i = 0; i < pairsToOptimize; i++) {
+            group.remove(Integer.valueOf(5));
+            group.remove(Integer.valueOf(3));
+            group.add(4);
+            group.add(4);
+        }
+    }
+
+    private BigDecimal calculateTotalPrice(List<Integer> bookCount) {
+        BigDecimal totalPrice = BigDecimal.ZERO;
+
+        for(int optimalUniqueBooks : bookCount) {
+            BigDecimal discount = DISCOUNTS.getOrDefault(optimalUniqueBooks, BigDecimal.ZERO);
             BigDecimal groupPrice = BOOK_PRICE
-                    .multiply(BigDecimal.valueOf(uniqueBooks))
+                    .multiply(BigDecimal.valueOf(optimalUniqueBooks))
                     .multiply(BigDecimal.ONE.subtract(discount));
             totalPrice = totalPrice.add(groupPrice);
-
-            // Decrease the count of each book in the current group
-            bookCount.replaceAll((bookId, count) -> count - 1);
-            // Remove books that are no longer in the basket
-            bookCount.values().removeIf(count -> count <= 0);
         }
 
         return totalPrice.setScale(2, RoundingMode.HALF_UP);
