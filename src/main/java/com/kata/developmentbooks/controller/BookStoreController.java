@@ -2,7 +2,6 @@ package com.kata.developmentbooks.controller;
 
 import com.kata.developmentbooks.model.BasketRequest;
 import com.kata.developmentbooks.service.BookStoreService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
