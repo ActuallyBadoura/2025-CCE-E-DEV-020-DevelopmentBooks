@@ -16,7 +16,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>6.1.0</spring.version>
         <jackson.version>2.16.0</jackson.version>
-        <swagger.version>2.2.0</swagger.version>
         <jetty.version>11.0.20</jetty.version>
     </properties>
 
@@ -41,13 +40,6 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
-        </dependency>
-
-        <!-- Swagger/OpenAPI -->
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>${swagger.version}</version>
         </dependency>
 
         <!-- Testing -->
