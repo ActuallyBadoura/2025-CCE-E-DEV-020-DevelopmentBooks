@@ -1,7 +1,6 @@
 package com.kata.developmentbooks.service;
 
 import com.kata.developmentbooks.config.AppConfig;
-import com.kata.developmentbooks.config.WebConfig;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {AppConfig.class, WebConfig.class})
+@ContextConfiguration(classes = {AppConfig.class})
 public class BookStoreServiceTest {
 
         @Autowired

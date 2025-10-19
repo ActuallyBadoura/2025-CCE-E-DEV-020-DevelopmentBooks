@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages = "com.kata.developmentbooks")
+@ComponentScan(basePackages = "com.kata.developmentbooks.service")
 public class AppConfig {
 
     @Bean
