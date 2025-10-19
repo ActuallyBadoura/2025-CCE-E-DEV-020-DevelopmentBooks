@@ -1,0 +1,242 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2024-01-15T10:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.8",
+  "resources": [
+    {
+      "_id": "wrk_1",
+      "parentId": null,
+      "modified": 1705312800000,
+      "created": 1705312800000,
+      "name": "Book Store Kata API",
+      "description": "Collection for testing book store pricing kata",
+      "scope": "collection",
+      "type": "workspace"
+    },
+    {
+      "_id": "fld_1",
+      "parentId": "wrk_1",
+      "modified": 1705312800000,
+      "created": 1705312800000,
+      "name": "Book Store Tests",
+      "description": "Test cases for book store pricing",
+      "environment": {},
+      "type": "request_group"
+    },
+    {
+      "_id": "req_health",
+      "parentId": "fld_1",
+      "modified": 1705312800000,
+      "created": 1705312800000,
+      "name": "Health Check",
+      "description": "Check if API is running",
+      "method": "GET",
+      "url": "http://localhost:8080/api/health",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "type": "request"
+    },
+    {
+      "_id": "req_books",
+      "parentId": "fld_1",
+      "modified": 1705312800000,
+      "created": 1705312800000,
+      "name": "Get Available Books",
+      "description": "Get list of available books with IDs",
+      "method": "GET",
+      "url": "http://localhost:8080/api/books",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "type": "request"
+    },
+    {
+      "_id": "req_empty_basket",
+      "parentId": "fld_1",
+      "modified": 1705312800000,
+      "created": 1705312800000,
+      "name": "Empty Basket",
+      "description": "Test with empty basket",
+      "method": "POST",
+      "url": "http://localhost:8080/api/calculate",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"basket\": []\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "type": "request"
+    },
+    {
+      "_id": "req_single_book",
+      "parentId": "fld_1",
+      "modified": 1705312800000,
+      "created": 1705312800000,
+      "name": "Single Book",
+      "description": "Test with one book (no discount)",
+      "method": "POST",
+      "url": "http://localhost:8080/api/calculate",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"basket\": [1]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "type": "request"
+    },
+    {
+      "_id": "req_two_different_books",
+      "parentId": "fld_1",
+      "modified": 1705312800000,
+      "created": 1705312800000,
+      "name": "Two Different Books",
+      "description": "Test with two different books (5% discount)",
+      "method": "POST",
+      "url": "http://localhost:8080/api/calculate",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"basket\": [1, 2]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "type": "request"
+    },
+    {
+      "_id": "req_three_different_books",
+      "parentId": "fld_1",
+      "modified": 1705312800000,
+      "created": 1705312800000,
+      "name": "Three Different Books",
+      "description": "Test with three different books (10% discount)",
+      "method": "POST",
+      "url": "http://localhost:8080/api/calculate",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"basket\": [1, 2, 3]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "type": "request"
+    },
+    {
+      "_id": "req_five_different_books",
+      "parentId": "fld_1",
+      "modified": 1705312800000,
+      "created": 1705312800000,
+      "name": "Five Different Books",
+      "description": "Test with all five different books (25% discount)",
+      "method": "POST",
+      "url": "http://localhost:8080/api/calculate",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"basket\": [1, 2, 3, 4, 5]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "type": "request"
+    },
+    {
+      "_id": "req_kata_example",
+      "parentId": "fld_1",
+      "modified": 1705312800000,
+      "created": 1705312800000,
+      "name": "Kata Example Complex",
+      "description": "Test the complex example from kata: 2,2,2,1,1 of each book",
+      "method": "POST",
+      "url": "http://localhost:8080/api/calculate",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"basket\": [1, 1, 2, 2, 3, 3, 4, 5]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "type": "request"
+    },
+    {
+      "_id": "req_multiple_same_books",
+      "parentId": "fld_1",
+      "modified": 1705312800000,
+      "created": 1705312800000,
+      "name": "Multiple Same Books",
+      "description": "Test with multiple copies of same book (no discount)",
+      "method": "POST",
+      "url": "http://localhost:8080/api/calculate",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"basket\": [1, 1, 1]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "type": "request"
+    },
+    {
+      "_id": "req_mixed_basket",
+      "parentId": "fld_1",
+      "modified": 1705312800000,
+      "created": 1705312800000,
+      "name": "Mixed Basket",
+      "description": "Test with mixed basket: 2 different + 1 same",
+      "method": "POST",
+      "url": "http://localhost:8080/api/calculate",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"basket\": [1, 2, 1]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "type": "request"
+    }
+  ]
+}
