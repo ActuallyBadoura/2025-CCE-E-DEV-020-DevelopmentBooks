@@ -1,5 +1,6 @@
 package com.kata.developmentbooks;
 
+import com.kata.developmentbooks.config.WebConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -11,7 +12,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return null;
+        return new Class[] { WebConfig.class };
     }
 
     @Override
