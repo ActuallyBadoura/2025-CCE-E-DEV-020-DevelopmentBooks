@@ -1,4 +1,4 @@
-# Project Title
+# Kata developerbooks store
 
 A Development Book store written in Java using Spring (not Boot) with Jetty server.
 
