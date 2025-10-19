@@ -1,5 +1,6 @@
 package com.kata.developmentbooks.config;
 
+import com.kata.developmentbooks.controller.BookStoreController;
 import com.kata.developmentbooks.service.BookStoreService;
 import com.kata.developmentbooks.service.BookStoreServiceImpl;
 import org.springframework.context.annotation.Bean;
@@ -13,5 +14,10 @@ public class AppConfig {
     @Bean
     public BookStoreService bookStoreService() {
         return new BookStoreServiceImpl();
+    }
+
+    @Bean
+    public BookStoreController bookStoreController() {
+        return new BookStoreController(bookStoreService());
     }
 }
