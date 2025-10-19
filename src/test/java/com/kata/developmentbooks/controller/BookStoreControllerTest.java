@@ -27,14 +27,12 @@ public class BookStoreControllerTest {
     @Mock
     private BookStoreService bookStoreService;
 
-    @InjectMocks
-    private BookStoreController bookStoreController;
-
     private MockMvc mockMvc;
     private ObjectMapper objectMapper;
 
     @BeforeEach
     void setup() {
+        BookStoreController bookStoreController = new BookStoreController(bookStoreService);
         mockMvc = MockMvcBuilders.standaloneSetup(bookStoreController).build();
         objectMapper = new ObjectMapper();
     }

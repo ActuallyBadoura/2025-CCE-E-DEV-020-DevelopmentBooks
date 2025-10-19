@@ -1,6 +1,7 @@
 package com.kata.developmentbooks.service;
 
 import com.kata.developmentbooks.config.AppConfig;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ContextConfiguration(classes = {AppConfig.class})
 public class BookStoreServiceTest {
 
-        @Autowired
         private BookStoreService bookStoreService;
 
         // Book IDs
@@ -26,6 +26,11 @@ public class BookStoreServiceTest {
         private static final int CLEAN_ARCHITECTURE = 3;
         private static final int TDD_BY_EXAMPLE = 4;
         private static final int LEGACY_CODE = 5;
+
+        @BeforeEach
+        void setUp() {
+            bookStoreService = new BookStoreServiceImpl();
+        }
 
         @Test
         void testEmptyBasket() {
