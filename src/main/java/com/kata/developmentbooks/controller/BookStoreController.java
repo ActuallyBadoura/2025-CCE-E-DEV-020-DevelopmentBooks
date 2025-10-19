@@ -13,8 +13,11 @@ import java.util.Map;
 @RequestMapping("/api")
 public class BookStoreController {
 
-    @Autowired
-    private BookStoreService bookStoreService;
+    private final BookStoreService bookStoreService;
+
+    public BookStoreController(BookStoreService bookStoreService) {
+        this.bookStoreService = bookStoreService;
+    }
 
     @PostMapping("/calculate")
     public ResponseEntity<Map<String, Object>> calculatePrice(@RequestBody BasketRequest basketRequest) {
