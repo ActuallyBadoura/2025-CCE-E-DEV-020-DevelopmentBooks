@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 @RestController
@@ -18,10 +19,10 @@ public class BookStoreController {
     @PostMapping("/calculate")
     public ResponseEntity<Map<String, Object>> calculatePrice(@RequestBody BasketRequest basketRequest) {
         try {
-            double totalPrice = bookStoreService.calculatePrice();
+            BigDecimal totalPrice = bookStoreService.calculatePrice(basketRequest.getBasket());
 
             return ResponseEntity.ok(Map.of(
-                    "totalPrice", totalPrice,
+                    "totalPrice", totalPrice.doubleValue(),
                     "currency", "EUR"
             ));
         } catch (Exception e) {
