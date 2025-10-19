@@ -32,3 +32,29 @@ Start the server
 ```
 The application will be running on http://localhost:8080
 
+## API Documentation
+
+- **Calculate Book Basket Price**
+
+  - **Endpoint:** `/api/calculate`
+  - **Method:** `POST`
+  - **Description:** Calculate the total price of a basket of books. Given a list of book IDs, returns the total price considering applicable discounts. The IDs correspond to the following books:
+    - 1: Clean Code (Robert Martin, 2008)
+    - 2: The Clean Coder (Robert Martin, 2011)
+    - 3: Clean Architecture (Robert Martin, 2017)
+    - 4: Test Driven Development by Example (Kent Beck, 2003)
+    - 5: Working Effectively With Legacy Code (Michael C. Feathers, 2004)
+  - **Request Body:**
+    ```json
+    {
+      "basket": [1,2,3]
+    }
+    ```
+  - **Response:**
+    ```json
+    {
+      "totalPrice": 45.00,
+      "currency": "EUR"
+    }
+    ```
+
