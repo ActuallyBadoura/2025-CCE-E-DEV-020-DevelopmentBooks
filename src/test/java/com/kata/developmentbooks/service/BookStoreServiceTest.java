@@ -133,4 +133,23 @@ public class BookStoreServiceTest {
         // (2 * 50 * 0.95) + 50 = 95 + 50 = 145
         assertThat(price).isEqualTo(new BigDecimal("145.00"));
     }
+
+    @Test
+    void testEdgeCaseFromKata() {
+        // Given - This tests is from the kata description
+        List<Integer> basket = Arrays.asList(
+                CLEAN_CODE, CLEAN_CODE,
+                CLEAN_CODER, CLEAN_CODER,
+                CLEAN_ARCHITECTURE, CLEAN_ARCHITECTURE,
+                TDD_BY_EXAMPLE, LEGACY_CODE
+        );
+
+        // When
+        BigDecimal price = bookStoreService.calculatePrice(basket);
+
+        // Then
+        // Correct: [1,2,3,4] + [1,2,3,5] = 160 + 160 = 320
+        // Not correct: [1,2,3,4,5] + [1,2,3] = 187.50 + 135 = 322.50
+        assertThat(price).isEqualTo(new BigDecimal("320.00"));
+    }
 }
