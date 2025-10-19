@@ -1,12 +1,11 @@
 package com.kata.developmentbooks.service;
 
-import org.springframework.stereotype.Service;
+import java.math.BigDecimal;
+import java.util.List;
 
-@Service
-public class BookStoreService {
+public interface BookStoreService {
 
-    public double calculatePrice() {
-        // Implement the logic to calculate the total price with discounts
-        return 0.0;
-    }
+    // Calculate the total price of the books in the basket including discounts
+    BigDecimal calculatePrice(List<Integer> basket);
+
 }
