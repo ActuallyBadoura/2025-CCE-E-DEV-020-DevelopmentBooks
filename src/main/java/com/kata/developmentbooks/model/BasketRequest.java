@@ -1,13 +1,25 @@
 package com.kata.developmentbooks.model;
 
-public class BasketRequest {
-    private java.util.List<Integer> basket;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    public java.util.List<Integer> getBasket() {
+import java.util.List;
+
+public class BasketRequest {
+    private List<Integer> basket;
+
+    public BasketRequest() {}
+
+    @JsonCreator
+    public BasketRequest(@JsonProperty("basket") List<Integer> basket) {
+        this.basket = basket;
+    }
+
+    public List<Integer> getBasket() {
         return basket;
     }
 
-    public void setBasket(java.util.List<Integer> basket) {
+    public void setBasket(List<Integer> basket) {
         this.basket = basket;
     }
 }
