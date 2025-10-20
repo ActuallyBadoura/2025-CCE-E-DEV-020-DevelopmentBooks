@@ -1,15 +1,12 @@
 package com.kata.developmentbooks.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kata.developmentbooks.config.AppConfig;
-import com.kata.developmentbooks.model.BasketRequest;
+import com.kata.developmentbooks.dto.BasketRequest;
 import com.kata.developmentbooks.service.BookStoreService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -21,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.math.BigDecimal;
 import java.util.List;
 
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest
 public class BookStoreControllerTest {
 
     @Mock
@@ -47,7 +44,7 @@ public class BookStoreControllerTest {
                 .thenReturn(new BigDecimal("135.00"));
 
         // When / Then
-        mockMvc.perform(post("/api/calculate")
+        mockMvc.perform(post("/api/v1/calculate")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(basketRequest)))
                 .andExpect(status().isOk())
