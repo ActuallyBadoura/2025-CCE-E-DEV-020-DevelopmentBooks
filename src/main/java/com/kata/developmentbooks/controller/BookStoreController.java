@@ -1,15 +1,16 @@
 package com.kata.developmentbooks.controller;
 
-import com.kata.developmentbooks.model.BasketRequest;
+import com.kata.developmentbooks.dto.BasketRequest;
+import com.kata.developmentbooks.dto.ErrorResponse;
+import com.kata.developmentbooks.dto.PriceResponse;
 import com.kata.developmentbooks.service.BookStoreService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1/store")
 public class BookStoreController {
 
     private final BookStoreService bookStoreService;
@@ -19,19 +20,16 @@ public class BookStoreController {
     }
 
     @PostMapping("/calculate")
-    public ResponseEntity<Map<String, Object>> calculatePrice(@RequestBody BasketRequest basketRequest) {
-        try {
-            BigDecimal totalPrice = bookStoreService.calculatePrice(basketRequest.getBasket());
-
-            return ResponseEntity.ok(Map.of(
-                    "totalPrice", totalPrice.doubleValue(),
-                    "currency", "EUR"
-            ));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(Map.of(
-                    "error", "Invalid basket data",
-                    "message", e.getMessage()
-            ));
+    public ResponseEntity<?> calculatePrice(@RequestBody BasketRequest basketRequest) {
+        var basket = basketRequest.getBasket();
+        boolean invalidBookFound = basket.stream().anyMatch(id -> id < 1 || id > 5);
+        if (invalidBookFound) {
+            return  ResponseEntity.badRequest().body(new ErrorResponse("Invalid input", "Book IDs must be between 1 and 5"));
         }
+
+        BigDecimal totalPrice = bookStoreService.calculatePrice(basket);
+        PriceResponse priceResponse = new PriceResponse(totalPrice, "EUR");
+
+        return ResponseEntity.ok(priceResponse);
     }
 }
