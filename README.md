@@ -1,6 +1,6 @@
 # Kata developerbooks store
 
-A Development Book store written in Java using Spring (not Boot) with Jetty server.
+A Development Book store written in Java using Spring Boot and Maven.
 
 ## Features
 
@@ -28,7 +28,7 @@ Clean install Maven dependencies
 Start the server
 
 ```bash
-  mvn jetty:run
+  mvn spring-boot:run
 ```
 The application will be running on http://localhost:8080
 
@@ -36,7 +36,7 @@ The application will be running on http://localhost:8080
 
 - **Calculate Book Basket Price**
 
-  - **Endpoint:** `/api/calculate`
+  - **Endpoint:** `/api/v1/calculate`
   - **Method:** `POST`
   - **Description:** Calculate the total price of a basket of books. Given a list of book IDs, returns the total price considering applicable discounts. The IDs correspond to the following books:
     - 1: Clean Code (Robert Martin, 2008)
@@ -57,4 +57,12 @@ The application will be running on http://localhost:8080
       "currency": "EUR"
     }
     ```
+- **Health Check**
+  - **Endpoint:** `/api/v1/health`
+  - **Method:** `GET`
+  - **Description:** Check the health status of the application.
+  - **Response:**
+      ```text
+      Book Store Service is running
+      ```
 

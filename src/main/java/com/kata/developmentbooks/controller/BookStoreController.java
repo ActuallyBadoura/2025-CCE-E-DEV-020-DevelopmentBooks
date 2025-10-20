@@ -27,7 +27,7 @@ public class BookStoreController {
             @ApiResponse(responseCode = "400", description = "Invalid basket data")
     })
     @PostMapping("/calculate")
-    public ResponseEntity<?> calculatePrice(@RequestBody BasketRequest basketRequest) {
+    public ResponseEntity<PriceResponse> calculatePrice(@RequestBody BasketRequest basketRequest) {
             var basket = basketRequest.getBasket();
             boolean invalidBookFound = basket.stream().anyMatch(id -> id < 1 || id > 5);
             if (invalidBookFound) {
