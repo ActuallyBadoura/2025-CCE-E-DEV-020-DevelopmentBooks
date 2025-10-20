@@ -1,6 +1,5 @@
 package com.kata.developmentbooks.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kata.developmentbooks.model.Book;
 import com.kata.developmentbooks.service.BookService;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,7 +26,6 @@ public class BookControllerTest {
     private BookService bookService;
 
     private MockMvc mockMvc;
-    private ObjectMapper objectMapper;
 
     List<Book> BOOKS = Arrays.asList(
             new Book(1, "Clean Code", "Robert C. Martin", new BigDecimal("50.00")),
@@ -41,7 +39,6 @@ public class BookControllerTest {
     void setup() {
         BookController bookController = new BookController(bookService);
         mockMvc = MockMvcBuilders.standaloneSetup(bookController).build();
-        objectMapper = new ObjectMapper();
     }
 
     @Test
