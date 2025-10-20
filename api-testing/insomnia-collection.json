@@ -32,7 +32,7 @@
       "name": "Health Check",
       "description": "Check if API is running",
       "method": "GET",
-      "url": "http://localhost:8080/api/health",
+      "url": "http://localhost:8080/api/v1/health",
       "body": {},
       "parameters": [],
       "headers": [],
@@ -47,7 +47,7 @@
       "name": "Get Available Books",
       "description": "Get list of available books with IDs",
       "method": "GET",
-      "url": "http://localhost:8080/api/books",
+      "url": "http://localhost:8080/api/v1/books",
       "body": {},
       "parameters": [],
       "headers": [],
@@ -62,7 +62,7 @@
       "name": "Empty Basket",
       "description": "Test with empty basket",
       "method": "POST",
-      "url": "http://localhost:8080/api/calculate",
+      "url": "http://localhost:8080/api/v1/calculate",
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"basket\": []\n}"
@@ -85,7 +85,7 @@
       "name": "Single Book",
       "description": "Test with one book (no discount)",
       "method": "POST",
-      "url": "http://localhost:8080/api/calculate",
+      "url": "http://localhost:8080/api/v1/calculate",
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"basket\": [1]\n}"
@@ -108,7 +108,7 @@
       "name": "Two Different Books",
       "description": "Test with two different books (5% discount)",
       "method": "POST",
-      "url": "http://localhost:8080/api/calculate",
+      "url": "http://localhost:8080/api/v1/calculate",
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"basket\": [1, 2]\n}"
@@ -131,7 +131,7 @@
       "name": "Three Different Books",
       "description": "Test with three different books (10% discount)",
       "method": "POST",
-      "url": "http://localhost:8080/api/calculate",
+      "url": "http://localhost:8080/api/v1/calculate",
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"basket\": [1, 2, 3]\n}"
@@ -154,7 +154,7 @@
       "name": "Five Different Books",
       "description": "Test with all five different books (25% discount)",
       "method": "POST",
-      "url": "http://localhost:8080/api/calculate",
+      "url": "http://localhost:8080/api/v1/calculate",
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"basket\": [1, 2, 3, 4, 5]\n}"
@@ -177,7 +177,7 @@
       "name": "Kata Example Complex",
       "description": "Test the complex example from kata: 2,2,2,1,1 of each book",
       "method": "POST",
-      "url": "http://localhost:8080/api/calculate",
+      "url": "http://localhost:8080/api/v1/calculate",
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"basket\": [1, 1, 2, 2, 3, 3, 4, 5]\n}"
@@ -200,7 +200,7 @@
       "name": "Multiple Same Books",
       "description": "Test with multiple copies of same book (no discount)",
       "method": "POST",
-      "url": "http://localhost:8080/api/calculate",
+      "url": "http://localhost:8080/api/v1/calculate",
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"basket\": [1, 1, 1]\n}"
@@ -223,7 +223,7 @@
       "name": "Mixed Basket",
       "description": "Test with mixed basket: 2 different + 1 same",
       "method": "POST",
-      "url": "http://localhost:8080/api/calculate",
+      "url": "http://localhost:8080/api/v1/calculate",
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"basket\": [1, 2, 1]\n}"
