@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
+@CrossOrigin(origins = "*") //Todo: Restrict in production
 @RestController
 @RequestMapping("/api/v1/store")
 public class BookStoreController {

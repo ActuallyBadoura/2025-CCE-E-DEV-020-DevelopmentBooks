@@ -50,9 +50,9 @@ public class BookControllerTest {
         mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get("/api/v1/books")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(2))
-                .andExpect(jsonPath("$[0].title").value("Clean Code"))
-                .andExpect(jsonPath("$[1].title").value("The Clean Coder"));
+        .andExpect(jsonPath("$.length()").value(1))
+        .andExpect(jsonPath("$.books[0].id").value(1))
+        .andExpect(jsonPath("$.books[0].title").value("Clean Code"));
     }
 
 

@@ -72,19 +72,22 @@ The application will be running on http://localhost:8080
   - **Description:** Retrieve the list of available books in the store.
   - **Response:**
     ```json
-    [
-      {
-        "id": 1,
-        "title": "Clean Code",
-        "author": "Robert Martin",
-        "price": 20.00
-      },
-      {
-        "id": 2,
-        "title": "The Clean Coder",
-        "author": "Robert Martin",
-        "price": 22.00
-      }
-    ]
+    {
+      "books":
+      [
+        {
+          "id": 1,
+          "title": "Clean Code",
+          "author": "Robert Martin",
+          "price": 20.00
+        },
+        {
+          "id": 2,
+          "title": "The Clean Coder",
+          "author": "Robert Martin",
+          "price": 22.00
+        }
+      ]
+    }
     ```
 
