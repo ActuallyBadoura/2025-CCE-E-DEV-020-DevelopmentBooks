@@ -36,7 +36,7 @@ The application will be running on http://localhost:8080
 
 - **Calculate Book Basket Price**
 
-  - **Endpoint:** `/api/v1/calculate`
+  - **Endpoint:** `/api/v1/store/calculate`
   - **Method:** `POST`
   - **Description:** Calculate the total price of a basket of books. Given a list of book IDs, returns the total price considering applicable discounts. The IDs correspond to the following books:
     - 1: Clean Code (Robert Martin, 2008)
