@@ -3,9 +3,6 @@ package com.kata.developmentbooks.controller;
 import com.kata.developmentbooks.dto.BasketRequest;
 import com.kata.developmentbooks.dto.PriceResponse;
 import com.kata.developmentbooks.service.BookStoreService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,11 +18,6 @@ public class BookStoreController {
         this.bookStoreService = bookStoreService;
     }
 
-    @Operation(summary = "Calculate the total price of the basket with discounts applied")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Basket price calculated successfully"),
-            @ApiResponse(responseCode = "400", description = "Invalid basket data")
-    })
     @PostMapping("/calculate")
     public ResponseEntity<PriceResponse> calculatePrice(@RequestBody BasketRequest basketRequest) {
             var basket = basketRequest.getBasket();
