@@ -1,0 +1,41 @@
+### Get Books
+GET http://localhost:8080/api/v1/books
+Accept: application/json
+
+### Calculate Price of Basket
+POST http://localhost:8080/api/v1/store/calculate
+Content-Type: application/json
+
+{
+  "basket": [1, 2, 3, 4, 5]
+}
+
+### Calculate Price of Empty Basket
+POST http://localhost:8080/api/v1/store/calculate
+Content-Type: application/json
+{
+  "basket": []
+}
+
+### Calculate Price of Basket with Duplicates
+POST http://localhost:8080/api/v1/store/calculate
+Content-Type: application/json
+{
+    "basket": [1, 1, 2, 2, 3]
+}
+
+### Calculate Price of Large Basket
+POST http://localhost:8080/api/v1/store/calculate
+Content-Type: application/json
+{
+    "basket": [1, 1, 2, 2, 3,
+                3, 4, 4, 5, 5,
+                1, 2, 3, 4, 5]
+}
+
+### Calculate Price of Basket with Invalid Book IDs
+POST http://localhost:8080/api/v1/store/calculate
+Content-Type: application/json
+{
+    "basket": [1, 6, 7]
+}
