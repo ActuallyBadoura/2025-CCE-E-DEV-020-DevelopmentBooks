@@ -4,7 +4,6 @@ import com.kata.developmentbooks.config.AppConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -36,7 +35,7 @@ public class BookStoreServiceTest {
         @Test
         void testEmptyBasket() {
             // Given
-            List<Integer> basket = Arrays.asList();
+            List<Integer> basket = List.of();
 
             // When
             BigDecimal price = bookStoreService.calculatePrice(basket);
@@ -48,7 +47,7 @@ public class BookStoreServiceTest {
         @Test
         void testOneBook() {
             // Given
-            List<Integer> basket = Arrays.asList(CLEAN_CODE);
+            List<Integer> basket = List.of(CLEAN_CODE);
 
             // When
             BigDecimal price = bookStoreService.calculatePrice(basket);

@@ -36,7 +36,7 @@ public class BookServiceTest {
 
         // Then
         assert books.size() == 5;
-        assert books.stream().map(Book::getId).allMatch(List.of(CLEAN_CODE, CLEAN_CODER, CLEAN_ARCHITECTURE, TDD_BY_EXAMPLE, LEGACY_CODE)::contains);
+        assert books.stream().map(Book::id).allMatch(List.of(CLEAN_CODE, CLEAN_CODER, CLEAN_ARCHITECTURE, TDD_BY_EXAMPLE, LEGACY_CODE)::contains);
     }
 
     @Test
@@ -47,11 +47,11 @@ public class BookServiceTest {
         var books = bookService.getAllBooks();
 
         // Then
-        var cleanCode = books.stream().filter(book -> book.getId() == CLEAN_CODE).findFirst().orElse(null);
+        var cleanCode = books.stream().filter(book -> book.id() == CLEAN_CODE).findFirst().orElse(null);
         assert cleanCode != null;
-        assert cleanCode.getTitle().equals("Clean Code");
-        assert cleanCode.getAuthor().equals("Robert C. Martin");
-        assert cleanCode.getPrice().equals(new java.math.BigDecimal("50.00"));
+        assert cleanCode.title().equals("Clean Code");
+        assert cleanCode.author().equals("Robert C. Martin");
+        assert cleanCode.price().equals(new java.math.BigDecimal("50.00"));
     }
 
     @Test
@@ -63,10 +63,10 @@ public class BookServiceTest {
 
         // Then
         for (var book : books) {
-            assert book.getId() > 0;
-            assert book.getTitle() != null && !book.getTitle().isEmpty();
-            assert book.getAuthor() != null && !book.getAuthor().isEmpty();
-            assert book.getPrice() != null && book.getPrice().compareTo(java.math.BigDecimal.ZERO) > 0;
+            assert book.id() > 0;
+            assert book.title() != null && !book.title().isEmpty();
+            assert book.author() != null && !book.author().isEmpty();
+            assert book.price() != null && book.price().compareTo(java.math.BigDecimal.ZERO) > 0;
         }
     }
 }
