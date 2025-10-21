@@ -1,11 +1,13 @@
 package com.kata.developmentbooks.service;
 
 import com.kata.developmentbooks.model.Book;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
+@Service
 public class BookServiceImpl implements BookService {
 
     List<Book> BOOKS = Arrays.asList(
