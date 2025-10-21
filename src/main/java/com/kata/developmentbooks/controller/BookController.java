@@ -1,13 +1,16 @@
 package com.kata.developmentbooks.controller;
 
+import com.kata.developmentbooks.dto.BooksResponse;
 import com.kata.developmentbooks.model.Book;
 import com.kata.developmentbooks.service.BookService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*") //TODO: Restrict in production
 @RestController
 @RequestMapping("/api/v1/books")
 public class BookController {
@@ -19,7 +22,9 @@ public class BookController {
     }
 
     @GetMapping
-    public List<Book> getAllBooks() {
-        return bookService.getAllBooks();
+    public BooksResponse getAllBooks() {
+        List<Book> allBooks = bookService.getAllBooks();
+
+        return new BooksResponse(allBooks);
     }
 }

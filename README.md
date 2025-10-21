@@ -69,7 +69,8 @@ The application will be running on http://localhost:8080
         - 5: Working Effectively With Legacy Code (Michael C. Feathers, 2004)
     - **Response:**
       ```json
-      [
+      {
+        "books": [
        {
         "id": 1,
         "title": "Clean Code",
@@ -100,5 +101,5 @@ The application will be running on http://localhost:8080
         "author": "Michael Feathers",
         "price": 50.00
        }
-      ]
+      }
       ```

@@ -50,7 +50,7 @@ public class BookControllerTest {
         mockMvc.perform(get("/api/v1/books")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-        .andExpect(jsonPath("$.length()").value(5));
+        .andExpect(jsonPath("$.books.length()").value(5));
     }
 
 }
