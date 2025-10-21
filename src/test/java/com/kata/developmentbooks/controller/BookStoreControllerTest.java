@@ -44,7 +44,7 @@ public class BookStoreControllerTest {
                 .thenReturn(new BigDecimal("135.00"));
 
         // When / Then
-        mockMvc.perform(post("/api/v1/calculate")
+        mockMvc.perform(post("/api/v1/store/calculate")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(basketRequest)))
                 .andExpect(status().isOk())
