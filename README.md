@@ -65,4 +65,26 @@ The application will be running on http://localhost:8080
       ```text
       Book Store Service is running
       ```
+    
+- **Get Books List**
+  - **Endpoint:** `/api/v1/books`
+  - **Method:** `GET`
+  - **Description:** Retrieve the list of available books in the store.
+  - **Response:**
+    ```json
+    [
+      {
+        "id": 1,
+        "title": "Clean Code",
+        "author": "Robert Martin",
+        "price": 20.00
+      },
+      {
+        "id": 2,
+        "title": "The Clean Coder",
+        "author": "Robert Martin",
+        "price": 22.00
+      }
+    ]
+    ```
 
