@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -151,5 +152,80 @@ public class BookStoreServiceTest {
         // Correct: [1,2,3,4] + [1,2,3,5] = 160 + 160 = 320
         // Not correct: [1,2,3,4,5] + [1,2,3] = 187.50 + 135 = 322.50
         assertThat(price).isEqualTo(new BigDecimal("320.00"));
+    }
+
+    @Test
+    void testNoOptimization_5Plus2() {
+        // Given
+        List<Integer> basket = Arrays.asList(CLEAN_CODE, CLEAN_CODER, CLEAN_ARCHITECTURE, TDD_BY_EXAMPLE, LEGACY_CODE, CLEAN_CODE, CLEAN_CODER);
+
+        // When
+        BigDecimal price = bookStoreService.calculatePrice(basket);
+
+        // Then
+        // Should stay as [1,2,3,4,5] + [1,2] = 187.50 + 95 = 282.50
+        assertThat(price).isEqualTo(new BigDecimal("282.50"));
+    }
+
+    @Test
+    void testMultiple_5Plus3_Optimizations() {
+        // Given - Two sets of 5+3 that should become 4+4, 4+4
+        List<Integer> basket = Arrays.asList(
+                CLEAN_CODE, CLEAN_CODE, CLEAN_CODE, CLEAN_CODE,                                  // 4 of book 1
+                CLEAN_CODER, CLEAN_CODER, CLEAN_CODER, CLEAN_CODER,                              // 4 of book 2
+                CLEAN_ARCHITECTURE, CLEAN_ARCHITECTURE, CLEAN_ARCHITECTURE, CLEAN_ARCHITECTURE,  // 4 of book 3
+                TDD_BY_EXAMPLE, TDD_BY_EXAMPLE,                                                  // 2 of book 4
+                LEGACY_CODE, LEGACY_CODE                                                         // 2 of book 5
+        );
+
+        // When
+        BigDecimal price = bookStoreService.calculatePrice(basket);
+
+        // Then
+        // Should form four groups of 4 books each
+        // 4 * (4 * 50 * 0.80) = 4 * 160 = 640
+        assertThat(price).isEqualTo(new BigDecimal("640.00"));
+    }
+
+    @Test
+    void testPrimeNumberQuantities() {
+        // Given - Testing with prime numbers: 7, 5, 3, 2, 1
+        List<Integer> basket = new ArrayList<>();
+        for (int i = 0; i < 7; i++) basket.add(1);
+        for (int i = 0; i < 5; i++) basket.add(2);
+        for (int i = 0; i < 3; i++) basket.add(3);
+        for (int i = 0; i < 2; i++) basket.add(4);
+        basket.add(5);
+
+        // When
+        BigDecimal price = bookStoreService.calculatePrice(basket);
+
+        // Then
+        assertThat(price).isNotNull();
+        assertThat(price).isEqualTo(new BigDecimal("770.00"));
+    }
+
+    @Test
+    void testLargeBasketPerformance() {
+        // Given 100 of each book
+        List<Integer> basket = new ArrayList<>();
+        for (int book = 1; book <= 5; book++) {
+            for (int i = 0; i < 100; i++) {
+                basket.add(book);
+            }
+        }
+
+        // When
+        long startTime = System.currentTimeMillis();
+        BigDecimal price = bookStoreService.calculatePrice(basket);
+        long endTime = System.currentTimeMillis();
+
+        // Then
+        // Should form 100 groups of 5 books
+        // 100 * (5 * 50 * 0.75) = 100 * 187.50 = 18750
+        assertThat(price).isEqualTo(new BigDecimal("18750.00"));
+
+        // Performance assertion - should complete in less than 100ms
+        assertThat(endTime - startTime).isLessThan(100);
     }
 }
